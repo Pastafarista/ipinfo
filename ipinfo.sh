@@ -1,4 +1,6 @@
 #!/bin/bash
+# Description: Get information from an IP and CIDR
+# Author: Antonio
 
 # bc alias
 alias bc='bc -l ~/.config/bcinit'

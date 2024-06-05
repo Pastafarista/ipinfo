@@ -1,4 +1,6 @@
 #!/bin/bash
+# Description: Get information about a subnet given a CIDR
+# Author: Antonio
 
 # bc alias
 alias bc='bc -l ~/.config/bcinit'
