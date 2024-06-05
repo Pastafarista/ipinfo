@@ -2,9 +2,6 @@
 # Description: Get information from an IP and CIDR
 # Author: Antonio
 
-# bc alias
-alias bc='bc -l ~/.config/bcinit'
-
 # colors
 RED="\033[1;31m"
 GREEN="\033[1;32m"
@@ -35,9 +32,11 @@ to_bin ()
 
 function get_subnet_class() {
     cidr=$1
-
-    # subnet number
-    subnet_number=$( echo "2^8 - 2^(mod((32 - $cidr),8))" | bc -l ~/.config/bcinit)
+    
+    # get subnet number
+    power=$((32 - $cidr))
+    power=$((power % 8))
+    subnet_number=$( echo "2^8 - 2^{$power}" | bc)
 
     # get the subnet type
     if [ $cidr -gt 24 ]; then

@@ -2,9 +2,6 @@
 # Description: Get information about a subnet given a CIDR
 # Author: Antonio
 
-# bc alias
-alias bc='bc -l ~/.config/bcinit'
-
 # colors
 RED="\033[1;31m"
 GREEN="\033[1;32m"
@@ -41,8 +38,10 @@ function info_subnet(){
         number_hosts=0
     fi
 
-    # subnet number
-    subnet_number=$( echo "2^8 - 2^(mod($number_of_ceros,8))" | bc -l ~/.config/bcinit)
+    # get subnet number
+    power=$((32 - $cidr))
+    power=$((power % 8))
+    subnet_number=$( echo "2^8 - 2^{$power}" | bc)
 
     # get the subnet type
     if [ $cidr -gt 24 ]; then
